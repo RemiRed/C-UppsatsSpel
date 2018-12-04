@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using UnityEngine;
 #if UNITY_EDITOR
 
@@ -105,3 +105,4 @@ namespace UnityStandardAssets.Cameras
         }
     }
 }
+*/
