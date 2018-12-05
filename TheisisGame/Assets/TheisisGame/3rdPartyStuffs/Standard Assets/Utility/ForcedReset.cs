@@ -1,7 +1,8 @@
-using System;
+/*using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityStandardAssets.CrossPlatformInput;
+//using UnityStandardAssets.CrossPlatformInput;
+
 
 [RequireComponent(typeof (GUITexture))]
 public class ForcedReset : MonoBehaviour
@@ -16,3 +17,4 @@ public class ForcedReset : MonoBehaviour
         }
     }
 }
+*/
