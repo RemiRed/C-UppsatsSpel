@@ -263,7 +263,7 @@ namespace Invector.vCharacterController
 
         protected virtual void SprintInput()
         {
-            if (sprintInput.GetButtonDown())
+            if (sprintInput.GetButton())
                 cc.Sprint(true);
             else
                 cc.Sprint(false);

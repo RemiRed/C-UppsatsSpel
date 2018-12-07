@@ -681,7 +681,7 @@ namespace Invector.vCharacterController
         {
             CheckGroundDistance();
 
-            if (isDead || customAction)
+            if (isDead /*|| customAction*/)
             {
                 isGrounded = true;
                 return;

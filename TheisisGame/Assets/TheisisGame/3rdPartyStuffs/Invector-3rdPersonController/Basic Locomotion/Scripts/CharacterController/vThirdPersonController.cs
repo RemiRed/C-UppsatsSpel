@@ -36,16 +36,21 @@ namespace Invector.vCharacterController
         #region Locomotion Actions
 
         public virtual void Sprint(bool value)
+
         {
             if (value)
             {
                 if (currentStamina > 0 && input.sqrMagnitude > 0.1f)
                 {
                     if (isGrounded && !isCrouching)
-                        isSprinting = !isSprinting;
+                        isSprinting = true;
+                }
+                else if (currentStamina <= 0 || input.sqrMagnitude < 0.1f || isCrouching || !isGrounded || actions || isStrafing && !strafeSpeed.walkByDefault && (direction >= 0.5 || direction <= -0.5 || speed <= 0))
+                {
+                    isSprinting = false;
                 }
             }
-            else if (currentStamina <= 0 || input.sqrMagnitude < 0.1f || isCrouching || !isGrounded || actions || isStrafing && !strafeSpeed.walkByDefault && (direction >= 0.5 || direction <= -0.5 || speed <= 0))
+            else
             {
                 isSprinting = false;
             }
@@ -127,7 +132,8 @@ namespace Invector.vCharacterController
             // can roll even if it's on a quickturn or quickstop animation
             bool actionsRoll = !actions || (actions && (quickStop));
             // general conditions to roll
-            bool rollConditions = (input != Vector2.zero || speed > 0.25f) && actionsRoll && isGrounded && staminaCondition && !isJumping;
+            bool rollConditions = (input != Vector2.zero || speed > 0.25f) && (actionsRoll || isGrounded || staminaCondition || isJumping);
+
 
             if (!rollConditions || isRolling) return;
 
