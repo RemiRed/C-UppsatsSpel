@@ -128,7 +128,41 @@ namespace Invector.vCharacterController
 
         public virtual void Roll()
         {
+
+            if (animator.IsInTransition(0)) return;
+
             bool staminaCondition = currentStamina > rollStamina;
+
+            // can roll even if it's on a quickturn or quickstop animation
+
+            bool actionsRoll = !actions || (actions && (quickStop));
+
+            // general conditions to roll
+
+            bool rollConditions = (input != Vector2.zero || speed > 0.25f) && actionsRoll && staminaCondition;
+
+
+
+            if (!rollConditions || isRolling) return;
+
+            animator.SetInteger("ActionState", 1);
+
+            animator.SetTrigger("ResetState");
+
+            animator.CrossFadeInFixedTime("Roll", 0.1f);
+
+            ReduceStamina(rollStamina, false);
+
+            currentStaminaRecoveryDelay = 2f;
+
+
+
+
+
+
+
+
+            /*bool staminaCondition = currentStamina > rollStamina;
             // can roll even if it's on a quickturn or quickstop animation
             bool actionsRoll = !actions || (actions && (quickStop));
             // general conditions to roll
@@ -139,7 +173,7 @@ namespace Invector.vCharacterController
 
             animator.CrossFadeInFixedTime("Roll", 0.1f);
             ReduceStamina(rollStamina, false);
-            currentStaminaRecoveryDelay = 2f;
+            currentStaminaRecoveryDelay = 2f;*/
         }
 
         /// <summary>
