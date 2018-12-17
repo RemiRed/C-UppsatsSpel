@@ -532,7 +532,7 @@ namespace Invector.vCharacterController
             var _targetVelocity = transform.forward * velocity * speed;
             _targetVelocity.y = _rigidbody.velocity.y;
             _rigidbody.velocity = _targetVelocity;
-            //_rigidbody.AddForce(transform.forward * ((velocity * speed) * Time.deltaTime), ForceMode.VelocityChange);
+           // _rigidbody.AddForce(transform.forward * ((velocity * speed) * Time.deltaTime), ForceMode.VelocityChange);
         }
 
         protected void StopMove()
