@@ -20,7 +20,7 @@ namespace Invector.vCharacterController
         public GenericInput jumpInput = new GenericInput("Space", "X", "X");
         public GenericInput rollInput = new GenericInput("Q", "B", "B");
         public GenericInput strafeInput = new GenericInput("Tab", "RightStickClick", "RightStickClick");
-        public GenericInput sprintInput = new GenericInput("LeftShift", "LeftStickClick", "LeftStickClick");
+        public GenericInput sprintInput = new GenericInput("LeftShift", "RT", "RT");
         public GenericInput crouchInput = new GenericInput("C", "Y", "Y");
 
         [vEditorToolbar("Camera Settings")]

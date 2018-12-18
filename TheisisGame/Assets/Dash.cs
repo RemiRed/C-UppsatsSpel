@@ -6,51 +6,64 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class Dash : MonoBehaviour
+
+namespace Invector.vCharacterController
 {
-
-    public float speed;
-    private Rigidbody rb;
-    public float MaxDashTime = 1.0f;
-    public float dashSpeed = 1.0f;
-    public float dashStoppingSpeed = 0.1f;
-    private float currentDashTime;
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        currentDashTime = MaxDashTime;
-
-    }
-
-
-    void dash()
-    {
-        transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-        rb.AddForce(transform.forward * speed, ForceMode.VelocityChange);
-
-    }
-
-
-    void FixedUpdate()
+    public class Dash : vMonoBehaviour
     {
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        public float speed;
+        private Rigidbody rb;
+        public float cooldown;
+        public float dashSpeed = 1.0f;
+        private float coolDownTimer;
+        public GenericInput rollInput = new GenericInput("Q", "B", "B");
+
+
+        void Start()
         {
+            rb = GetComponent<Rigidbody>();
+            coolDownTimer = cooldown;
+            print(coolDownTimer);
 
-            if (Input.GetKeyDown(KeyCode.Q))
+        }
+
+
+        void dash()
+        {
+            transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            rb.AddForce(transform.forward * speed, ForceMode.VelocityChange);
+
+        }
+
+
+        void FixedUpdate()
+        {
+            if (coolDownTimer > 0)
             {
-                currentDashTime = 0.0f;
+
+                coolDownTimer -= Time.deltaTime;
             }
-            if (currentDashTime < MaxDashTime)
+            if (coolDownTimer < 0)
             {
+
+                coolDownTimer = 0;
+            }
+
+
+            if (rollInput.GetButton() && coolDownTimer == 0)
+            {
+
                 dash();
-                currentDashTime += dashStoppingSpeed;
+                coolDownTimer = cooldown;
+                print(coolDownTimer);
             }
+
+
+
 
         }
 
     }
-
 }

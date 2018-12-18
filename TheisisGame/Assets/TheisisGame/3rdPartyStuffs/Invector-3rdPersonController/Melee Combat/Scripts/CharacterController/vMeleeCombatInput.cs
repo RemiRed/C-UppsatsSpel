@@ -17,8 +17,8 @@ namespace Invector.vCharacterController
         #region Variables                
         [vEditorToolbar("Inputs")]
         [Header("Melee Inputs")]
-        public GenericInput weakAttackInput = new GenericInput("Mouse0", "RB", "RB");
-        public GenericInput strongAttackInput = new GenericInput("Alpha1", false, "RT", true, "RT", false);
+        public GenericInput weakAttackInput = new GenericInput("Mouse0", "LeftStickClick", "LeftStickClick");
+        public GenericInput strongAttackInput = new GenericInput("Alpha1", false, "RightStickClick", true, "RightStickClick", false);
         public GenericInput blockInput = new GenericInput("Mouse1", "LB", "LB");
 
         protected vMeleeManager meleeManager;
