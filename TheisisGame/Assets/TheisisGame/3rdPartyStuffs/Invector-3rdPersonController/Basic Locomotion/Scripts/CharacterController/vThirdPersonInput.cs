@@ -283,7 +283,7 @@ namespace Invector.vCharacterController
 
         protected virtual void RollInput()
         {
-            if (rollInput.GetButtonDown())
+            if (rollInput.GetButton())
                 cc.Roll();
         }
         #endregion

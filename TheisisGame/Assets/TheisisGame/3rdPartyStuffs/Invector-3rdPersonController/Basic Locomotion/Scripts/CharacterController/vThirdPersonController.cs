@@ -149,11 +149,11 @@ namespace Invector.vCharacterController
 
             animator.SetTrigger("ResetState");
 
-            animator.CrossFadeInFixedTime("Roll", 0.1f);
+            animator.CrossFadeInFixedTime("Roll", 0.01f);
 
             ReduceStamina(rollStamina, false);
 
-            currentStaminaRecoveryDelay = 2f;
+            currentStaminaRecoveryDelay = 0.1f;
 
 
 

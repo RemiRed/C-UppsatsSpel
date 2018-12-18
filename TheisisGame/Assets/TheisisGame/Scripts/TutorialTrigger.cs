@@ -17,16 +17,31 @@ public class TutorialTrigger : MonoBehaviour {
             popUpText.enabled = true;
             pauseState = true;
             print(pauseState);
+            Time.timeScale = 0;
+                
             //Spelet pausas här.
+
         }
 
-        else if (Input.GetKeyUp(KeyCode.E) && pauseState == true || Input.GetButtonUp("Y") && pauseState == true)
+        
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && Input.GetKeyUp(KeyCode.E) && pauseState == true && Time.timeScale == 0 || other.CompareTag("Player") && Input.GetButtonUp("Y") && pauseState == true && Time.timeScale == 0)
         {
             popUpText.enabled = false;
+            pauseState = false;
             print(pauseState);
+            Time.timeScale = 1;
             //Spelet fortsätter här.
+
+
+            Destroy(gameObject);
+
         }
     }
+
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
