@@ -22,13 +22,11 @@ public class TutorialTrigger : MonoBehaviour {
             //Spelet pausas här.
 
         }
-
-        
     }
 
-    void OnTriggerStay(Collider other)
+    void Update()
     {
-        if (other.CompareTag("Player") && Input.GetKeyUp(KeyCode.E) && pauseState == true && Time.timeScale == 0 || other.CompareTag("Player") && Input.GetButtonUp("Y") && pauseState == true && Time.timeScale == 0)
+        if (Input.GetKeyUp(KeyCode.E) && pauseState == true && Time.timeScale == 0 || Input.GetButtonUp("Y") && pauseState == true && Time.timeScale == 0)
         {
             popUpText.enabled = false;
             pauseState = false;
@@ -41,6 +39,22 @@ public class TutorialTrigger : MonoBehaviour {
 
         }
     }
+
+   /* void OnTriggerStay(Collider other)
+    {
+        if (Input.GetKeyUp(KeyCode.E) && pauseState == true && Time.timeScale == 0 || Input.GetButtonUp("Y") && pauseState == true && Time.timeScale == 0)
+        {
+            popUpText.enabled = false;
+            pauseState = false;
+            print(pauseState);
+            Time.timeScale = 1;
+            //Spelet fortsätter här.
+
+
+            Destroy(gameObject);
+
+        }
+    } */
 
     void OnTriggerExit(Collider other)
     {
