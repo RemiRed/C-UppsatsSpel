@@ -17,8 +17,7 @@ public class TutorialTrigger : MonoBehaviour {
             popUpText.enabled = true;
             pauseState = true;
             print(pauseState);
-            Time.timeScale = 0;
-                
+            Time.timeScale = 0;      
             //Spelet pausas här.
 
         }
@@ -34,33 +33,8 @@ public class TutorialTrigger : MonoBehaviour {
             Time.timeScale = 1;
             //Spelet fortsätter här.
 
-
             Destroy(gameObject);
 
         }
     }
-
-   /* void OnTriggerStay(Collider other)
-    {
-        if (Input.GetKeyUp(KeyCode.E) && pauseState == true && Time.timeScale == 0 || Input.GetButtonUp("Y") && pauseState == true && Time.timeScale == 0)
-        {
-            popUpText.enabled = false;
-            pauseState = false;
-            print(pauseState);
-            Time.timeScale = 1;
-            //Spelet fortsätter här.
-
-
-            Destroy(gameObject);
-
-        }
-    } */
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            popUpText.enabled = false;
-
-    }
-
 }
