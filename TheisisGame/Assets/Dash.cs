@@ -34,7 +34,7 @@ namespace Invector.vCharacterController
             transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             rb.AddForce(transform.forward * speed, ForceMode.VelocityChange);
-
+            
         }
 
 
