@@ -468,7 +468,7 @@ namespace Invector.vCharacterController
                 freeRotation = Quaternion.LookRotation(lookDirection, transform.up);
                 var diferenceRotation = freeRotation.eulerAngles.y - transform.eulerAngles.y;
                 var eulerY = transform.eulerAngles.y;
-                // apply free directional rotation while not turning180 animations
+                // apply free directional rotation while not turning 180 animations
                 if (isGrounded || (!isGrounded && jumpAirControl))
                 {
                     if (diferenceRotation < 0 || diferenceRotation > 0) eulerY = freeRotation.eulerAngles.y;
