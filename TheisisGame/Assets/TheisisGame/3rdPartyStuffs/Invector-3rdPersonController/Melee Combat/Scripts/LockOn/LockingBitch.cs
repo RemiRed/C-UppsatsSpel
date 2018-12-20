@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Invector.vCharacterController
 {
     [vClassHeader("MELEE LOCK-ON")]
-    public class vLockOn : vLockOnBehaviour
+    public class LockingBitch : vLockOnBehaviour
     {
         #region variables
         [System.Serializable]
@@ -45,7 +45,6 @@ namespace Invector.vCharacterController
             tpInput = GetComponent<vMeleeCombatInput>();
             if (tpInput)
                 tpInput.onUpdateInput.AddListener(UpdateLockOn);
-         
         }
 
         public Canvas aimCanvas
@@ -53,7 +52,7 @@ namespace Invector.vCharacterController
             get
             {
                 if (_aimCanvas) return _aimCanvas;
-                //_aimCanvas = vHUDController.instance.GetComponentInParent<Canvas>();
+                _aimCanvas = vHUDController.instance.GetComponentInParent<Canvas>();
                 if (_aimCanvas == null) FindObjectOfType<Canvas>();
                 return _aimCanvas;
             }
@@ -115,8 +114,6 @@ namespace Invector.vCharacterController
             {
                 tpInput.tpCamera.SetLockTarget(currentTarget.transform, cameraHeightOffset);
                 onLockOnTarget.Invoke(currentTarget);
-                
-                
             }
         }
 
@@ -158,7 +155,6 @@ namespace Invector.vCharacterController
                 // send message to clear current target
                 StopLockOn();
             }
-            print("TARGET LOOCKED");
         }
 
         protected virtual void UpdateAimImage()
