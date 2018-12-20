@@ -22,6 +22,7 @@ namespace Invector.vCharacterController
         public GenericInput strafeInput = new GenericInput("Tab", "RightStickClick", "RightStickClick");
         public GenericInput sprintInput = new GenericInput("LeftShift", "RT", "RT");
         public GenericInput crouchInput = new GenericInput("C", "Y", "Y");
+        Grapplin GS;
 
         [vEditorToolbar("Camera Settings")]
         public bool lockCameraInput;
@@ -33,6 +34,9 @@ namespace Invector.vCharacterController
         public GenericInput rotateCameraXInput = new GenericInput("Mouse X", "RightAnalogHorizontal", "Mouse X");
         public GenericInput rotateCameraYInput = new GenericInput("Mouse Y", "RightAnalogVertical", "Mouse Y");
         public GenericInput cameraZoomInput = new GenericInput("Mouse ScrollWheel", "", "");
+        public GenericInput isHooking = new GenericInput("H", "RB", "RB");
+
+
         [HideInInspector]
         public vCamera.vThirdPersonCamera tpCamera;              // acess camera info                
         [HideInInspector]
@@ -74,6 +78,7 @@ namespace Invector.vCharacterController
         protected virtual void Start()
         {
             cc = GetComponent<vThirdPersonController>();
+            GS = GameObject.Find("vMeleeController").GetComponent<Grapplin>();
 
             if (cc != null)
                 cc.Init();
@@ -85,7 +90,7 @@ namespace Invector.vCharacterController
 
             ShowCursor(showCursorOnStart);
             LockCursor(unlockCursorOnStart);
-        }       
+        }
 
         protected virtual IEnumerator CharacterInit()
         {
@@ -115,6 +120,7 @@ namespace Invector.vCharacterController
             updateIK = false;
         }
 
+
         protected virtual void FixedUpdate()
         {
             cc.ControlLocomotion();
@@ -130,7 +136,23 @@ namespace Invector.vCharacterController
             cc.UpdateMotor();                   // call ThirdPersonMotor methods
             //cc.UpdateAnimator();                // call ThirdPersonAnimator methods
             UpdateHUD();                        // update hud graphics
+
+            //Ray ray = Camera.main.ScreenPointToRay(/*skriv in crosshair position*/);
+            RaycastHit hit;
+
+            /*if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.tag == "Hookable") //If the player clicks an hookable object
+                {
+                    GS.Destination = hit.transform.gameObject; //sets the object as the desired destination
+                    GS.Rope.SetPosition(1, GS.Destination.transform.position); //sets the ropes end position to the desired destination
+
+                    GS.isHooking = true;
+                }
+            }*/
         }
+
+
 
         protected virtual void InputHandle()
         {
@@ -213,6 +235,8 @@ namespace Invector.vCharacterController
             cc.strafeSpeed.walkByDefault = value;
         }
 
+
+
         #endregion
 
         #region Basic Locomotion Inputs      
@@ -285,6 +309,12 @@ namespace Invector.vCharacterController
         {
             if (rollInput.GetButton())
                 cc.Roll();
+        }
+
+        protected virtual void isHookingInput()
+        {
+
+
         }
         #endregion
 

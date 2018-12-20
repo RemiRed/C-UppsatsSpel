@@ -20,6 +20,8 @@ namespace Invector.vCharacterController
         public GenericInput weakAttackInput = new GenericInput("Mouse0", "LeftStickClick", "LeftStickClick");
         public GenericInput strongAttackInput = new GenericInput("Alpha1", false, "RightStickClick", true, "RightStickClick", false);
         public GenericInput blockInput = new GenericInput("Mouse1", "LB", "LB");
+        
+
 
         protected vMeleeManager meleeManager;
         public bool isAttacking { get; protected set; }
@@ -122,6 +124,8 @@ namespace Invector.vCharacterController
 
             isBlocking = blockInput.GetButton() && cc.currentStamina > 0;
         }
+
+        
 
         #endregion
 
