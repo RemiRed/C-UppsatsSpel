@@ -1,40 +1,64 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+*/
 
-namespace Invector
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Grapplin : MonoBehaviour
 {
 
-    public class Grapplin : MonoBehaviour
+    #region Variables
+    [SerializeField] GameObject hookGun, destination;// destination ska sättas i ett annat script med raycast
+    [SerializeField] LineRenderer rope;
+    [SerializeField] float travelSpeed;
+    public bool isHooking;
+
+
+    #endregion
+
+    #region Properties
+
+    public bool IsHooking
     {
-
-
-        // Update is called once per frame
-        void Update()
-        {
-           /* if (_createRope) //Sets the ropes start position to the hookgun
-            {
-                _lr.SetPosition(0, transform.position); //Sets the ropes start position to the hookgun
-                transform.LookAt(_destination.transform); //Makes the hookgun look at the target
-                _lr.enabled = true;
-
-                _player.transform.position = Vector3.Lerp(_player.transform.position, _destination.transform.position, _travelSpeed * Time.deltaTime); //Transports the players position to the goal position at desired speed
-
-                float distanceToHook = Vector3.Distance(transform.position, _destination.transform.position); //Stores the distance between the hookgun and the destination
-
-                if (distanceToHook <= _colliderOffset) //When the hookgun is “close enough” to the desired destination it removes the rope
-
-                {
-                    _lr.enabled = false;
-                    _createRope = false;
-                }
-            }
-            else
-            {
-                transform.rotation = Quaternion.identity;  //Resetting the hookgun rotation
-            }*/
-        }
-
+        get { return isHooking; }
+        set { isHooking = value; }
     }
+
+    public GameObject Destination
+    {
+        get { return destination; }
+        set { destination = value; }
+    }
+
+    public LineRenderer Rope
+    {
+        get { return rope; }
+        set { rope = value; }
+    }
+
+    #endregion
+
+    #region Methods
+
+    void Update()
+    {
+        if (isHooking) //Kommunicera med annat script
+        {
+            rope.SetPosition(0, hookGun.transform.position);
+            hookGun.transform.LookAt(destination.transform);
+            rope.enabled = true;
+            transform.position = Vector3.Lerp(transform.position, destination.transform.position, travelSpeed);
+            isHooking = false;
+
+            //Ändra i annat script där destination tilldelas. rope.setposition(1, destination.transform.position);
+            //När den ska sluta hooka fram rope.enabled = false där ni vill
+        }
+    }
+    #endregion
 }
+
