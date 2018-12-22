@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
-using System.Collections;
-using System;
-
-
 namespace Invector.vCharacterController
 {
-    public class Dash : vMonoBehaviour
+    public class BlinkScript : vMonoBehaviour
     {
 
         public float speed;
@@ -29,7 +24,7 @@ namespace Invector.vCharacterController
         }
 
 
-        void dash()
+        void Blink()
         {
             transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
@@ -55,7 +50,7 @@ namespace Invector.vCharacterController
             if (rollInput.GetButton() && coolDownTimer == 0)
             {
 
-                dash();
+                Blink();
                 coolDownTimer = cooldown;
                 print(coolDownTimer);
             }

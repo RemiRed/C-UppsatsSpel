@@ -1,35 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//This script communicates with the player movement script
+/*[SerializeField]
+[Header("Only on speed boost")] float _speedBoost;
+[SerializeField]
+[Header("Only on jump pad")] float _springStrength;
 
-namespace Invector.vCharacterController
+void OnTriggerEnter(Collider other)
 {
-
-
-
-
-    public class Crosshair : vMonoBehaviour
+    if (other.tag == "Player")
     {
-        [SerializeField] Texture2D image;
-        [SerializeField] int size;
-        public GenericInput rotateCameraXInput = new GenericInput("Mouse X", "RightAnalogHorizontal", "Mouse X");
-        public GenericInput rotateCameraYInput = new GenericInput("Mouse Y", "RightAnalogVertical", "Mouse Y");
-
-        float lookHeight;
-
-        public void LookHeight(float value)
+        if (gameObject.tag == "JumpPad")
         {
-            lookHeight += value;
+            _pm.MoveDirection = new Vector3(0, _springStrength, 0); //Makes the player jump higher
         }
-
-        void OnGUI()
-        {
-            Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-            screenPosition.y = Screen.height - screenPosition.y;
-            GUI.DrawTexture(new Rect(screenPosition.x, screenPosition.y - lookHeight, size, size), image);
-        }
-
 
     }
-
 }
+void OnTriggerExit(Collider other) //Resetting the players speed
+{
+    if (other.tag == "Player" && gameObject.tag == "SpeedBoost")
+    {
+        _pm.AbleToSprint = true;
+        _pm.Speed = _pm.NormalSpeed;
+        _pm.Boosted = false;
+    }
+}*/

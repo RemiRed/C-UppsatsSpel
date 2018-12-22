@@ -56,7 +56,7 @@ namespace Invector.vCharacterController.AI
         {
             if (Time.timeScale == 0) return;
             if (agent.enabled && !agent.isOnOffMeshLink && agent.updatePosition)
-                agent.velocity = animator.deltaPosition / Time.deltaTime;
+                //agent.velocity = animator.deltaPosition / Time.deltaTime;
 
             if (!_rigidbody.useGravity && !actions && !agent.isOnOffMeshLink)
                 _rigidbody.velocity = animator.deltaPosition;
