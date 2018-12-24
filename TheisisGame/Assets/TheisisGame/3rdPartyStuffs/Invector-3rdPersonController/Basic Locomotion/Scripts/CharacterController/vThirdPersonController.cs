@@ -83,6 +83,8 @@ namespace Invector.vCharacterController
             // conditions to do this action
             bool jumpConditions = !isCrouching && !actions && staminaConditions;
 
+
+         
             // check if multi jump is possible
             if (MultiJump > 1)
             {

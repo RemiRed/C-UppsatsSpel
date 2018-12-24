@@ -83,6 +83,8 @@ namespace Invector.vCharacterController
         public float jumpCounter;
         [Tooltip("Add Extra jump speed, based on your speed input the character will move forward")]
         public float jumpForward = 3f;
+        [Tooltip("Add Extra jump speed, based on your speed input the character will move forward")]
+        public float padStr = 3f;
         [Tooltip("Add Extra jump height, if you want to jump only with Root Motion leave the value with 0.")]
         public float jumpHeight = 4f;
         [Tooltip("Increase number to enable multiple jumps on your character")]
@@ -588,6 +590,23 @@ namespace Invector.vCharacterController
 
         protected void ControlJumpBehaviour()
         {
+            if ( gameObject.tag == "JumpPad")
+
+            {
+
+                print("i get here");
+                var pad = _rigidbody.velocity;
+                pad.y = jumpHeight * padStr;
+                _rigidbody.velocity = pad;
+
+
+            }
+
+
+
+
+
+
             if (!isJumping) return;
 
             jumpCounter -= Time.deltaTime;
@@ -600,6 +619,9 @@ namespace Invector.vCharacterController
             var vel = _rigidbody.velocity;
             vel.y = jumpHeight*jumpMultiplier;
             _rigidbody.velocity = vel;
+
+
+
         }
         public void SetJumpMultiplier(float jumpMultiplier,float timeToReset = 1f)
         {

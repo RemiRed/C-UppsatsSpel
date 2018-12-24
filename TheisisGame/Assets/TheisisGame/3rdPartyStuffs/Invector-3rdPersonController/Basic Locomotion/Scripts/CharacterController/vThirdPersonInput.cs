@@ -35,7 +35,7 @@ namespace Invector.vCharacterController
         public GenericInput rotateCameraXInput = new GenericInput("Mouse X", "RightAnalogHorizontal", "Mouse X");
         public GenericInput rotateCameraYInput = new GenericInput("Mouse Y", "RightAnalogVertical", "Mouse Y");
         public GenericInput cameraZoomInput = new GenericInput("Mouse ScrollWheel", "", "");
-        public GenericInput isHooking = new GenericInput("H", "RB", "RB");
+        
 
 
         [HideInInspector]
