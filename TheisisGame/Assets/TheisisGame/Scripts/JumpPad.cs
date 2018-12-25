@@ -10,6 +10,7 @@
         public Rigidbody _rigidbody;
         public float jumpHeight = 2.7f;
         public float padStr = 4f;
+        public vThirdPersonController v;
 
 
         void Start()
@@ -29,6 +30,15 @@
             }    
         }
 
+
+        void OnTriggerExit(Collider otherEx)
+        {
+            if(otherEx.tag== "Player" && (v.isGrounded)  )
+            {
+                v.currentMultiJump = 0;
+            }
+        }
+       
     }
 
 

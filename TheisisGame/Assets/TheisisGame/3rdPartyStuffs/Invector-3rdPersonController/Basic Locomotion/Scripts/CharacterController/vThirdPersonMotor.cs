@@ -590,23 +590,7 @@ namespace Invector.vCharacterController
 
         protected void ControlJumpBehaviour()
         {
-            if ( gameObject.tag == "JumpPad")
-
-            {
-
-                print("i get here");
-                var pad = _rigidbody.velocity;
-                pad.y = jumpHeight * padStr;
-                _rigidbody.velocity = pad;
-
-
-            }
-
-
-
-
-
-
+      
             if (!isJumping) return;
 
             jumpCounter -= Time.deltaTime;
