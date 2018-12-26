@@ -13,6 +13,9 @@ namespace Invector.vCharacterController
         public float dashSpeed = 1.0f;
         private float coolDownTimer;
         public GenericInput rollInput = new GenericInput("Q", "B", "B");
+        public ParticleSystem blinkParticle1;
+        public ParticleSystem blinkParticle2;
+        public ParticleSystem blinkParticle3;
 
 
         void Start()
@@ -35,6 +38,8 @@ namespace Invector.vCharacterController
 
         void FixedUpdate()
         {
+            BlinkEffect();
+
             if (coolDownTimer > 0)
             {
 
@@ -47,7 +52,7 @@ namespace Invector.vCharacterController
             }
 
 
-            if (rollInput.GetButton() && coolDownTimer == 0)
+            if (rollInput.GetButtonDown() && coolDownTimer == 0)
             {
 
                 Blink();
@@ -58,6 +63,17 @@ namespace Invector.vCharacterController
 
 
 
+        }
+
+
+        void BlinkEffect()
+        {
+            if (rollInput.GetButton())
+            {
+                blinkParticle1.Play();
+                blinkParticle2.Play();
+                blinkParticle3.Play();
+            }
         }
 
     }
