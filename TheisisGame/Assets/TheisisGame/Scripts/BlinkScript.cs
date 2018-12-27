@@ -36,9 +36,9 @@ namespace Invector.vCharacterController
         }
 
 
-        void FixedUpdate()
+        void Update()
         {
-            BlinkEffect();
+            
 
             if (coolDownTimer > 0)
             {
@@ -54,7 +54,7 @@ namespace Invector.vCharacterController
 
             if (rollInput.GetButtonDown() && coolDownTimer == 0)
             {
-
+                BlinkEffect();
                 Blink();
                 coolDownTimer = cooldown;
                 print(coolDownTimer);
