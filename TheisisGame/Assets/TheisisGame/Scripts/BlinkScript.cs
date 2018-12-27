@@ -36,7 +36,7 @@ namespace Invector.vCharacterController
         }
 
 
-        void Update()
+        void FixedUpdate()
         {
             
 
