@@ -11,6 +11,7 @@
         public float jumpHeight = 2.7f;
         public float padStr = 4f;
         public vThirdPersonController v;
+        public Animator anim;
 
 
         void Start()
@@ -27,6 +28,7 @@
                 var pad = _rigidbody.velocity;
                 pad.y = jumpHeight * padStr;
                 _rigidbody.velocity = pad;
+                anim.CrossFadeInFixedTime("Falling", 0.1f);
             }    
         }
 
