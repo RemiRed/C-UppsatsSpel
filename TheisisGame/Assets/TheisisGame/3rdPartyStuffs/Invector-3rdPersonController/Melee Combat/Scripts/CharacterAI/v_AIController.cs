@@ -90,7 +90,7 @@ namespace Invector.vCharacterController.AI
         {
             if (AgentDone() && agent.updatePosition || lockMovement)
             {
-                agent.speed = 0f;
+                agent.speed = 2f;
                 combatMovement = Vector3.zero;
             }
             if (agent.isOnOffMeshLink)

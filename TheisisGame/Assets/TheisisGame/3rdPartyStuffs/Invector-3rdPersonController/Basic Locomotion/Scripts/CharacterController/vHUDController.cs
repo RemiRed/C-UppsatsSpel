@@ -139,12 +139,12 @@ namespace Invector.vCharacterController
                 healthSlider.onValueChanged.Invoke(healthSlider.value);
             }
             healthSlider.value = Mathf.Lerp(healthSlider.value, cc.currentHealth, 2f * Time.fixedDeltaTime);
-            if (cc.maxStamina != staminaSlider.maxValue)
+            /*if (cc.maxStamina != staminaSlider.maxValue)
             {
                 staminaSlider.maxValue = Mathf.Lerp(staminaSlider.maxValue, cc.maxStamina, 2f * Time.fixedDeltaTime);
                 staminaSlider.onValueChanged.Invoke(staminaSlider.value);
             }
-            staminaSlider.value = cc.currentStamina;
+            staminaSlider.value = cc.currentStamina;*/
         }
 
         public void ShowDamageSprite()
