@@ -3,11 +3,11 @@ using System.Collections;
 using UnityEngine;
 
 namespace Invector.vCharacterController.AI
-{   
+{
     [vClassHeader("Enemy AI", false)]
     public class v_AIController : v_AIAnimator, vIMeleeFighter
     {
-        [vEditorToolbar("Iterations")]        
+        [vEditorToolbar("Iterations")]
         public float stateRoutineIteration = 0.15f;
         public float destinationRoutineIteration = 0.25f;
         public float findTargetIteration = 0.25f;
@@ -32,32 +32,34 @@ namespace Invector.vCharacterController.AI
         protected void FixedUpdate()
         {
             ControlLocomotion();
-            HealthRecovery();            
+            HealthRecovery();
         }
 
         #region AI Target
 
         protected void SetTarget()
         {
-            if (currentHealth > 0 && sphereSensor != null)
-            {
-                if (target == null || (sphereSensor.getFromDistance))
+          
+                if (currentHealth > 0 && sphereSensor != null/* && gameObject.tag == "Player"*/)
                 {
-                    var vChar = sphereSensor.GetTargetvCharacter();
-                    if (vChar != null && vChar.currentHealth > 0)
-                        target = vChar.transform;
-                }
+                    if (target == null || (sphereSensor.getFromDistance))
+                    {
+                        var vChar = sphereSensor.GetTargetvCharacter();
+                        if (vChar != null && vChar.currentHealth > 0)
+                            target = vChar.transform;
+                    }
 
-                if (!CheckTargetIsAlive() || TargetDistance > distanceToLostTarget)
+                    if (!CheckTargetIsAlive() || TargetDistance > distanceToLostTarget)
+                    {
+                        target = null;
+                    }
+                }
+                else if (currentHealth <= 0f)
                 {
+                    destination = transform.position;
                     target = null;
                 }
-            }
-            else if (currentHealth <= 0f)
-            {
-                destination = transform.position;
-                target = null;
-            }
+            
         }
 
         bool CheckTargetIsAlive()
@@ -138,7 +140,7 @@ namespace Invector.vCharacterController.AI
         }
 
         protected virtual void UpdateDestination(Vector3 position)
-        {            
+        {
             if (agent.isOnNavMesh)
             {
                 agent.SetDestination(position);
@@ -305,7 +307,7 @@ namespace Invector.vCharacterController.AI
                     if (Vector3.Distance(transform.position, destination) < targetPatrolPoint.areaRadius && targetPatrolPoint.CanEnter(transform) && !targetPatrolPoint.IsOnWay(transform))
                     {
                         targetPatrolPoint.Enter(transform);
-                        wait = Time.time +targetPatrolPoint.timeToStay;
+                        wait = Time.time + targetPatrolPoint.timeToStay;
                         visitedPatrolPoint.Add(targetPatrolPoint);
                     }
                     else if (Vector3.Distance(transform.position, destination) < targetPatrolPoint.areaRadius && (!targetPatrolPoint.CanEnter(transform) || !targetPatrolPoint.isValid)) targetPatrolPoint = GetPatrolPoint(targetWaypoint);
@@ -329,7 +331,7 @@ namespace Invector.vCharacterController.AI
                                 targetPatrolPoint.Exit(transform);
                                 targetPatrolPoint = GetPatrolPoint(targetWaypoint);
                             }
-                        }                      
+                        }
                     }
                 }
             }
@@ -355,9 +357,9 @@ namespace Invector.vCharacterController.AI
 
                     destination = targetWaypoint.position;
                     if (Vector3.Distance(transform.position, destination) < targetWaypoint.areaRadius && targetWaypoint.CanEnter(transform) && !targetWaypoint.IsOnWay(transform))
-                    {                        
+                    {
                         targetWaypoint.Enter(transform);
-                        wait = Time.time+ targetWaypoint.timeToStay;
+                        wait = Time.time + targetWaypoint.timeToStay;
                     }
                     else if (Vector3.Distance(transform.position, destination) < targetWaypoint.areaRadius && (!targetWaypoint.CanEnter(transform) || !targetWaypoint.isValid))
                         targetWaypoint = GetWaypoint();
@@ -375,7 +377,7 @@ namespace Invector.vCharacterController.AI
                                 visitedPatrolPoint.Clear();
                                 targetWaypoint = GetWaypoint();
                             }
-                        }                      
+                        }
                     }
                 }
             }
@@ -528,7 +530,7 @@ namespace Invector.vCharacterController.AI
 
         public vCharacter character
         {
-           get { return this; }
+            get { return this; }
         }
         #endregion
     }

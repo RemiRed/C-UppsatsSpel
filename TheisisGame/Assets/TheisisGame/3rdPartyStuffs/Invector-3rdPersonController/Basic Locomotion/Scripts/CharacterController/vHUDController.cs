@@ -84,7 +84,7 @@ namespace Invector.vCharacterController
         {
             UpdateDebugWindow(cc);
             UpdateSliders(cc);
-            ChangeInputDisplay();
+           // ChangeInputDisplay();
             ShowDamageSprite();
             FadeEffect();
         }
@@ -182,17 +182,18 @@ namespace Invector.vCharacterController
             }
         }
 
-        void ChangeInputDisplay()
+       /* void ChangeInputDisplay()
         {
 #if MOBILE_INPUT
 		displayControls.enabled = false;
 #else
-            if (controllerInput)
-                displayControls.sprite = joystickControls;
-            else
-                displayControls.sprite = keyboardControls;
-#endif
-        }
+             if (controllerInput)
+                 displayControls.sprite = joystickControls;
+             else
+                 displayControls.sprite = keyboardControls;
+ #endif
+     
+        }*/
 
         void InitFadeText()
         {
