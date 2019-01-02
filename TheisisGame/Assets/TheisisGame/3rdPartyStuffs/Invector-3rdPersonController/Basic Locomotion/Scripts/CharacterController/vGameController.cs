@@ -117,7 +117,7 @@ namespace Invector
 
                 currentPlayer = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation) as GameObject;
                 currentController = currentPlayer.GetComponent<vThirdPersonController>();
-                currentController.onDead.AddListener(OnCharacterDead);
+               // currentController.onDead.AddListener(OnCharacterDead);
 
                 if (displayInfoInFadeText && vHUDController.instance)
                 {
