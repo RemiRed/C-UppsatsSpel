@@ -1,31 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Invector;
 
-namespace Invector
+
+public class DieBitch : vMonoBehaviour
 {
 
-    public class DieBitch : vMonoBehaviour
+
+    public void OnTriggerEnter(Collider other)
+
     {
 
-        public vHealthController health;
-        public vHealthController dummy;
-
-        void OnTriggerEnter(Collider other)
+        if (other.CompareTag("Player"))
         {
-            if (other.tag == "Player")
-            {
 
-                health.currentHealth = 0f;
+            vGameController gc = FindObjectOfType<vGameController>();
 
-            }
-            if (other.tag == "Player")
-            {
+            other.transform.position = gc.spawnPoint.position;
 
-                dummy.currentHealth = 0f;
-
-            }
 
         }
+
     }
+
 }

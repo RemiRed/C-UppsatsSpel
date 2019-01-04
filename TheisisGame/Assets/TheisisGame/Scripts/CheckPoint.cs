@@ -17,12 +17,11 @@ public class CheckPoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            var gc = FindObjectOfType<vGameController>();
+            vGameController gc = FindObjectOfType<vGameController>();
 
             gc.spawnPoint = this.transform;
 
-            Debug.Log ("Spawn Point = " + gc.spawnPoint);
-
+            
         }
 
     }
