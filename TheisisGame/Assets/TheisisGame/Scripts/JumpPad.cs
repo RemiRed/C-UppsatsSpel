@@ -14,28 +14,38 @@
         public Animator anim;
 
 
-        void Start()
-        {
-            _rigidbody = playerController.GetComponent<Rigidbody>();            
-        }
+        
         
 
         void OnTriggerEnter (Collider other)
         {
+
             if (other.tag == "Player")
             {
-                print("i get here");
-                var pad = _rigidbody.velocity;
-                pad.y = jumpHeight * padStr;
-                _rigidbody.velocity = pad;
-                anim.CrossFadeInFixedTime("Falling", 0.1f);
-            }    
+                _rigidbody = other.GetComponent<Rigidbody>();
+                v = other.GetComponent<vThirdPersonController>();
+                anim = other.GetComponent<Animator>();
+
+                if (_rigidbody != null && v != null && anim != null)
+                {
+
+
+                    print("i get here");
+                    var pad = _rigidbody.velocity;
+                    pad.y = jumpHeight * padStr;
+                    _rigidbody.velocity = pad;
+                    anim.CrossFadeInFixedTime("Falling", 0.1f);
+                }
+            }
+
+
+             
         }
 
 
         void OnTriggerExit(Collider otherEx)
         {
-            if(otherEx.tag== "Player" && (v.isGrounded)  )
+            if(otherEx.tag == "Player" && (v.isGrounded)  )
             {
                 v.currentMultiJump = 0;
             }
@@ -51,29 +61,3 @@
 
 
 
-//This script communicates with the player movement script
-/*[SerializeField]
-[Header("Only on speed boost")] float _speedBoost;
-[SerializeField]
-[Header("Only on jump pad")] float _springStrength;
-
-void OnTriggerEnter(Collider other)
-{
-    if (other.tag == "Player")
-    {
-        if (gameObject.tag == "JumpPad")
-        {
-            _pm.MoveDirection = new Vector3(0, _springStrength, 0); //Makes the player jump higher
-        }
-
-    }
-}
-void OnTriggerExit(Collider other) //Resetting the players speed
-{
-    if (other.tag == "Player" && gameObject.tag == "SpeedBoost")
-    {
-        _pm.AbleToSprint = true;
-        _pm.Speed = _pm.NormalSpeed;
-        _pm.Boosted = false;
-    }
-}*/

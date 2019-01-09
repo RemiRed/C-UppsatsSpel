@@ -30,6 +30,9 @@ namespace Invector
         private GameObject oldPlayer;
         public bool displayInfoInFadeText = true;
 
+        public GameObject weapon;
+        public Transform weaponPos;
+
         void Start()
         {
             if (instance == null)
@@ -96,6 +99,8 @@ namespace Invector
         public IEnumerator Spawn()
         {
             yield return new WaitForSeconds(respawnTimer);
+
+            //Instantiate(weapon, weaponPos.position, weaponPos.rotation );
 
             if (playerPrefab != null && spawnPoint != null)
             {
